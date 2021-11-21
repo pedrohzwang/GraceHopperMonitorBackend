@@ -16,9 +16,13 @@ public class Log {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer logCode;
 
-    @Column(nullable = false, length = 255, name = "conteudo")
+    @Column(name = "conteudo", nullable = false)
     private String content;
 
-    @Column(nullable = false, name = "dt_log")
+    @Column(name = "dt_log", nullable = false)
     private LocalDate logDate;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false, referencedColumnName = "id_usuario",foreignKey = @ForeignKey(name = "fk_usuario"))
+    private User userId;
 }

@@ -1,15 +1,8 @@
 package com.gracehopper.gracehoppermonitorbackend.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
-@Entity(name = "usuario")
-@Data
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Entity
 public class User {
 
     @Id
@@ -17,14 +10,12 @@ public class User {
     @Column(name = "id_usuario")
     private Long userId;
 
-    @Column(nullable = false, length = 255, name = "nome")
-    private String name;
+    @Column(name = "nome_usuario", nullable = false, length = 20)
+    private String username;
 
-    @Column(nullable = false, length = 100, name = "ds_cargo")
-    private String post;
+    @Column(name = "senha", nullable = false)
+    private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "cd_funcao", nullable = false, referencedColumnName = "cd_funcao", foreignKey = @ForeignKey(name = "fk_funcao"))
-    private Role userRole;
-
+    @Column(name = "token")
+    private String accessToken;
 }
