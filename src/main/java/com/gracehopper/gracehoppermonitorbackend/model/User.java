@@ -2,7 +2,7 @@ package com.gracehopper.gracehoppermonitorbackend.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "usuario")
 public class User {
 
     @Id

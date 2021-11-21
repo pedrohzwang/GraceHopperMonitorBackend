@@ -23,6 +23,6 @@ public class Log {
     private LocalDate logDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false, referencedColumnName = "id_usuario",foreignKey = @ForeignKey(name = "fk_usuario"))
+    @JoinColumn(name = "id_usuario", nullable = false, referencedColumnName = "id_usuario", foreignKey = @ForeignKey(name = "fk_usuario_id"))
     private User userId;
 }
