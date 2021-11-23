@@ -16,7 +16,7 @@ public class LogService {
         return repository.save(log);
     }
 
-    public Log getLogByCode(Integer logCode) {
+    public Log getLogByCode(Long logCode) {
         return repository.getById(logCode);
     }
 }

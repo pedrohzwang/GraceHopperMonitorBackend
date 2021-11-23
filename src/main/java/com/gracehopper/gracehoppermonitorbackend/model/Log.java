@@ -14,7 +14,7 @@ public class Log {
     @Id
     @Column(name = "cd_log")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer logCode;
+    private Long logCode;
 
     @Column(name = "conteudo", nullable = false)
     private String content;
