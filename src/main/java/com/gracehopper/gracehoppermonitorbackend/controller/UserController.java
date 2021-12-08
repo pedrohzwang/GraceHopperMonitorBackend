@@ -20,7 +20,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-        return ResponseEntity.ok(service.saveUser(user));
+    public ResponseEntity saveUser(@RequestBody User user) {
+        service.saveUser(user);
+        return ResponseEntity.ok().build();
     }
 }
