@@ -1,5 +1,6 @@
 package com.gracehopper.gracehoppermonitorbackend.controller;
 
+import com.gracehopper.gracehoppermonitorbackend.dto.UserDTO;
 import com.gracehopper.gracehoppermonitorbackend.model.User;
 import com.gracehopper.gracehoppermonitorbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class UserController {
     UserService service;
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.getUserById(id));
     }
 

@@ -1,5 +1,6 @@
 package com.gracehopper.gracehoppermonitorbackend.service;
 
+import com.gracehopper.gracehoppermonitorbackend.dto.UserDTO;
 import com.gracehopper.gracehoppermonitorbackend.model.User;
 import com.gracehopper.gracehoppermonitorbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,13 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
-    public User getUserById(Long id) {
-        return repository.getById(id);
+    public UserDTO getUserById(Long id) {
+        User user = repository.getById(id);
+        return new UserDTO(user);
     }
 
     public void getInactiveTime(Long userId) {
-        User user = this.getUserById(userId);
+        User user = repository.getById(userId);
 
 
     }
