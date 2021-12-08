@@ -15,6 +15,12 @@ public class UserService {
         return repository.getById(id);
     }
 
+    public void getInactiveTime(Long userId) {
+        User user = this.getUserById(userId);
+
+
+    }
+
     public User saveUser(User user) {
         return repository.save(user);
     }
