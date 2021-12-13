@@ -12,23 +12,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class UserDTO {
 
-    private Long userId;
+    private Integer userId;
     private String name;
     private String username;
-    private String socialSecret;
     private String post;
     private Role userRole;
-    private String address;
-    private String phone;
+    private String accessToken;
 
     public UserDTO(User user) {
         this.userId = user.getUserId();
         this.name = user.getName();
         this.username = user.getUsername();
-        this.socialSecret = user.getSocialSecret();
         this.post = user.getPost();
         this.userRole = user.getUserRole();
-        this.address = user.getAddress();
-        this.phone = user.getPhone();
+        this.accessToken = user.getAccessToken();
     }
 }
