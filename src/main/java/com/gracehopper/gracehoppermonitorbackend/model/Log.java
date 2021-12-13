@@ -16,7 +16,7 @@ public class Log implements Serializable {
     @Id
     @Column(name = "cd_log")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long logCode;
+    private Integer logCode;
 
     @Column(name = "conteudo", nullable = false)
     private String content;
@@ -29,7 +29,7 @@ public class Log implements Serializable {
     private User userId;
 
     @JsonProperty("userId")
-    private void unpackNested(Long userId) {
+    private void unpackNested(Integer userId) {
         this.userId = new User();
         this.userId.setUserId(userId);
     }

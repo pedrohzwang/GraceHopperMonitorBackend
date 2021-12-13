@@ -8,14 +8,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LogRepository extends JpaRepository<Log, Long> {
+public interface LogRepository extends JpaRepository<Log, Integer> {
 
     @Query(value = "SELECT MAX(CD_LOG) FROM log WHERE user_id = ?1", nativeQuery = true)
-    Log getLastLogByUser(Long userId);
+    Log getLastLogByUser(Integer userId);
 
     @Query(value = "SELECT * FROM log WHERE user_id = ?1", nativeQuery = true)
-    List<Log> getLogsByUser(Long userId);
+    List<Log> getLogsByUser(Integer userId);
 
     @Query(value = "SELECT * FROM log WHERE id_usuario = ?1 ORDER BY cd_log DESC, dt_log DESC LIMIT 2", nativeQuery = true)
-    List<Log> getLastLogsByUser(Long userId);
+    List<Log> getLastLogsByUser(Integer userId);
 }
