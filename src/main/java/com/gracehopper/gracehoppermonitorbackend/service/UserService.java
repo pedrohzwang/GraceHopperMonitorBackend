@@ -57,11 +57,11 @@ public class UserService {
         repository.save(user);
     }
 
-    public void saveUser(User user) throws UserException {
+    public UserDTO saveUser(User user) throws UserException {
         List<User> users = repository.existsUserByUsername(user.getUsername());
         if (users.isEmpty()) {
             user.setPassword(encoder.encode(user.getPassword()));
-            repository.save(user);
+            return new UserDTO(repository.save(user));
         } else {
             throw new UserException("Username already exists!");
         }

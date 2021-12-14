@@ -25,11 +25,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity saveUser(@RequestBody User user) {
         try {
-            service.saveUser(user);
+            return ResponseEntity.ok(service.saveUser(user));
         } catch (UserException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping(path = "/{id}/changePassoword")

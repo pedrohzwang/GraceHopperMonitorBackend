@@ -39,7 +39,6 @@ public class LogController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<LogDTO>> getUserLogs(@PathVariable Integer userId) {
         return ResponseEntity.ok(logService.getLogsByUser(userId));
-        // pegar todos os logs por usuario
     }
 
     @GetMapping("/user/{userId}/{logDate}")
