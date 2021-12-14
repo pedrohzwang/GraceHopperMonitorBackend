@@ -60,7 +60,9 @@ public class LogService {
     }
 
     public List<LogDTO> getLogsDTOByDate(Integer userId, String logDate) {
-        List<Log> logs = repository.getLogDTOByUserDate(userId, logDate);
+        System.out.println("userid = ".concat(String.valueOf(userId)));
+        System.out.println("userid = ".concat(logDate));
+        List<Log> logs = repository.getLogsByUserDate(userId, logDate);
         List<LogDTO> logsDTODate = new ArrayList<>();
         logs.stream().forEach(log -> {
             logsDTODate.add(new LogDTO(log));
