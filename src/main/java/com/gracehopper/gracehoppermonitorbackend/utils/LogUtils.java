@@ -12,7 +12,7 @@ public class LogUtils {
         logs.stream().forEach(log -> content.append(log.getLogCode()).append(";")
                 .append(log.getContent()).append(";")
                 .append(log.getLogDate()).append(";")
-                .append(log.getUserId()));
+                .append(log.getUserId().getUserId()).append(";"));
 
         return content.toString();
     }

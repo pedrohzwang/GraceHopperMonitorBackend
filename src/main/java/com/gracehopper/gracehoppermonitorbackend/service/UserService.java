@@ -1,8 +1,10 @@
 package com.gracehopper.gracehoppermonitorbackend.service;
 
 import com.gracehopper.gracehoppermonitorbackend.dto.UserTokenDTO;
+import com.gracehopper.gracehoppermonitorbackend.enums.UserStatus;
 import com.gracehopper.gracehoppermonitorbackend.exception.UserException;
 import com.gracehopper.gracehoppermonitorbackend.dto.UserDTO;
+import com.gracehopper.gracehoppermonitorbackend.model.Log;
 import com.gracehopper.gracehoppermonitorbackend.model.User;
 import com.gracehopper.gracehoppermonitorbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +22,16 @@ public class UserService {
     @Autowired
     PasswordEncoder encoder;
 
-    public UserDTO getUserById(Integer id) {
+    @Autowired
+    LogService logService;
+
+    public UserDTO getUserDTOById(Integer id) {
         User user = repository.getById(id);
         return new UserDTO(user);
     }
 
-    public void getInactiveTime(Integer userId) {
-        User user = repository.getById(userId);
-
-
+    public User getUserById(Integer id) {
+        return repository.getById(id);
     }
 
     public void changePassword(Integer id, String newPassowrd) {
@@ -67,5 +70,11 @@ public class UserService {
     public void deleteUser(Integer id) {
         User user = repository.getById(id);
         repository.delete(user);
+    }
+
+    public UserStatus getUserStatus(Integer id) {
+        User user = repository.getById(id);
+        if (logService.getInactiveTimeByUser(id) > 0) return UserStatus.INACTIVE;
+        else return UserStatus.ACTIVE;
     }
 }
