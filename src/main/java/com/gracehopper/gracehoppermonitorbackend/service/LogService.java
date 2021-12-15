@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class LogService {
         List<Log> logs = repository.getLogsByUser(userId);
         List<LogDTO> logsDTO = new ArrayList<>();
         logs.stream().forEach(log -> {
+            //log.setLogDate(log.getLogDate().atOffset(ZoneId.));
             logsDTO.add(new LogDTO(log));
         });
         return logsDTO;
@@ -60,8 +62,6 @@ public class LogService {
     }
 
     public List<LogDTO> getLogsDTOByDate(Integer userId, String logDate) {
-        System.out.println("userid = ".concat(String.valueOf(userId)));
-        System.out.println("userid = ".concat(logDate));
         List<Log> logs = repository.getLogsByUserDate(userId, logDate);
         List<LogDTO> logsDTODate = new ArrayList<>();
         logs.stream().forEach(log -> {
@@ -70,4 +70,12 @@ public class LogService {
         return logsDTODate;
     }
 
+    public List<LogDTO> getLogsDTOBetweenDate(Integer userId, String initialDate, String finalDate) {
+        List<Log> logs = repository.getLogsBetweenDate(userId, initialDate, finalDate);
+        List<LogDTO> logsDTODate = new ArrayList<>();
+        logs.stream().forEach(log -> {
+            logsDTODate.add(new LogDTO(log));
+        });
+        return logsDTODate;
+    }
 }

@@ -46,6 +46,11 @@ public class LogController {
         return ResponseEntity.ok(logService.getLogsDTOByDate(userId, logDate));
     }
 
+    @GetMapping("/user/{userId}/{initialDate}/{finalDate}")
+    public ResponseEntity<List<LogDTO>> getUserLogsBetweenDate(@PathVariable Integer userId, @PathVariable String initialDate, @PathVariable String finalDate) {
+        return ResponseEntity.ok(logService.getLogsDTOBetweenDate(userId, initialDate, finalDate));
+    }
+
     @GetMapping("/{logCode}")
     public ResponseEntity<LogDTO> getLogById(@PathVariable Integer logCode) {
         return ResponseEntity.ok(logService.getLogDTOByCode(logCode));
