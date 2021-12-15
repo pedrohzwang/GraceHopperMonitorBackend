@@ -23,4 +23,8 @@ public interface LogRepository extends JpaRepository<Log, Integer> {
     @Query(value = "SELECT * FROM log WHERE id_usuario = ?1 " +
             "ORDER BY cd_log DESC, dt_log DESC LIMIT 2", nativeQuery = true)
     List<Log> getLastLogsByUser(Integer userId);
+
+    @Query(value = "SELECT * FROM log WHERE id_usuario = :userId " +
+            "and DATE_FORMAT(dt_log, \"%Y-%m-%d\") BETWEEN :initialDate AND :finalDate", nativeQuery = true)
+    List<Log> getLogsBetweenDate(@Param("userId") Integer userId, @Param("initialDate") String initialDate, @Param("finalDate") String finalDate);
 }
