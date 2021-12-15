@@ -8,7 +8,7 @@ import com.gracehopper.gracehoppermonitorbackend.model.Log;
 import com.gracehopper.gracehoppermonitorbackend.model.User;
 import com.gracehopper.gracehoppermonitorbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
-    @Autowired
-    PasswordEncoder encoder;
+    //@Autowired
+    //PasswordEncoder encoder;
 
     @Autowired
     LogService logService;
@@ -36,7 +36,7 @@ public class UserService {
 
     public void changePassword(Integer id, String newPassowrd) {
         User user = repository.getById(id);
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(newPassowrd);
         repository.save(user);
     }
 
@@ -50,7 +50,7 @@ public class UserService {
         User user = repository.getById(newUserInfo.getUserId());
         user.setName(newUserInfo.getName());
         user.setUsername(newUserInfo.getUsername());
-        user.setPassword(encoder.encode(newUserInfo.getPassword()));
+        user.setPassword(newUserInfo.getPassword());
         user.setAccessToken(newUserInfo.getAccessToken());
         user.setPost(newUserInfo.getPost());
         user.setUserRole(newUserInfo.getUserRole());
@@ -60,7 +60,7 @@ public class UserService {
     public UserDTO saveUser(User user) throws UserException {
         List<User> users = repository.existsUserByUsername(user.getUsername());
         if (users.isEmpty()) {
-            user.setPassword(encoder.encode(user.getPassword()));
+            user.setPassword(user.getPassword());
             return new UserDTO(repository.save(user));
         } else {
             throw new UserException("Username already exists!");
